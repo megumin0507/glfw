@@ -1,4 +1,5 @@
 project "GLFW"
+    location "%{wks.location}/Engine/Libraries/GLFW"
     kind "StaticLib"
     language "C"
 
