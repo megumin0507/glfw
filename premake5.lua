@@ -2,6 +2,7 @@ project "GLFW"
     location "%{wks.location}/Engine/Libraries/GLFW"
     kind "StaticLib"
     language "C"
+    staticruntime "On"
 
     targetdir ("%{wks.location}/Binaries/" .. outputdir .. "/%{prj.name}")
     objdir ("%{wks.location}/Intermediate/" .. outputdir .. "/%{prj.name}")
@@ -33,7 +34,6 @@ project "GLFW"
 
     filter "system:windows"
         systemversion "latest"
-        staticruntime "On"
 
         files
         {
@@ -57,5 +57,10 @@ project "GLFW"
             "_CRT_SECURE_NO_WARNINGS"
         }
         
-    filter { "system:windows", "configurations:Release" }
-        buildoptions "/MT"
+    filter "configurations:Debug"
+        runtime "Debug"
+        symbols "On"
+
+    filter "configurations:Release"
+        runtime "Release"
+        optimize "On"
